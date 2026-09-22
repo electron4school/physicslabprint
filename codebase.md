@@ -855,12 +855,7 @@ import "./.next/dev/types/root-params.d.ts";
 ```ts
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  devIndicators: {
-    appIsrStatus: false,
-    buildActivity: false,
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
 ```
