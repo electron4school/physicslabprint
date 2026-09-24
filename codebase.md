@@ -147,8 +147,7 @@ import {
   Check,
   RotateCcw,
   Upload,
-  ArrowRight,
-  Zap
+  ArrowRight
 } from 'lucide-react'
 
 export default function PhysicsLabPrintApp() {
@@ -258,9 +257,9 @@ export default function PhysicsLabPrintApp() {
       {/* Dotted Background */}
       <div className="absolute inset-0 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_2px,transparent_2px)] [background-size:32px_32px] pointer-events-none" />
 
-      {/* Header */}
+      {/* Header - Tighter Padding */}
       <header className="relative z-20 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-sm">
               <Printer className="w-4 h-4" />
@@ -269,40 +268,36 @@ export default function PhysicsLabPrintApp() {
               PhysicsLab<span className="text-slate-500 font-medium">Print</span>
             </span>
           </div>
-          <div className="hidden sm:flex items-center space-x-2 bg-emerald-50/80 border border-emerald-200/50 px-3 py-1.5 rounded-full text-[11px] font-medium text-emerald-700 shadow-sm">
+          <div className="hidden sm:flex items-center space-x-2 bg-emerald-50/80 border border-emerald-200/50 px-3 py-1.5 rounded-full text-[12px] font-semibold text-emerald-700 shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="tracking-wide uppercase">2 printers online</span>
+            <span className="tracking-wide">2 Lab printers</span>
           </div>
         </div>
       </header>
 
       <main className="relative z-10 max-w-6xl mx-auto w-full px-6 flex-grow flex flex-col items-center">
         
-        {/* Hero Section */}
-        <div className="max-w-2xl mx-auto pt-16 pb-10 text-center flex flex-col items-center">
-          
-          <div className="inline-flex items-center space-x-2 bg-indigo-50 border border-indigo-100 px-3 py-1 rounded-full text-xs font-semibold text-indigo-700 mb-6 shadow-sm">
-            <Zap className="w-3.5 h-3.5" />
-            <span>Secure Student Pull-Print</span>
-          </div>
+        {/* Hero Section - Moved up by removing the badge and reducing top padding */}
+        <div className="max-w-2xl mx-auto pt-4 md:pt-6 pb-2 md:pb-4 text-center flex flex-col items-center">
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
             Drop your graph.<br/>
             <span className="text-indigo-600">Print in seconds.</span>
           </h1>
-          <p className="mt-6 text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
-            No Dropbox login or flash drives required. Upload your PDF or image here to instantly generate a private code. Release it securely at either lab printer.
+          
+          <p className="mt-3 text-sm md:text-base text-slate-600 leading-relaxed max-w-lg mx-auto">
+            No login required. Drop your file, grab your 3-digit code, and release it at Printer 1 or Printer 2.
           </p>
         </div>
 
-        {/* Floating Toggle Switch */}
-        <div className="relative z-30 flex bg-white border border-slate-200 shadow-sm p-1 rounded-full mb-8">
+        {/* Floating Toggle Switch - Tighter Margins */}
+        <div className="relative z-30 flex bg-white border border-slate-200 shadow-sm p-1 rounded-full mb-4">
           <button
             onClick={() => { setActiveTab('upload'); setUploadError(null); }}
-            className={`px-8 py-2.5 text-sm font-bold rounded-full transition-all flex items-center space-x-2 ${
+            className={`px-6 py-2 text-sm font-bold rounded-full transition-all flex items-center space-x-2 ${
               activeTab === 'upload' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
             }`}
           >
@@ -310,7 +305,7 @@ export default function PhysicsLabPrintApp() {
           </button>
           <button
             onClick={() => { setActiveTab('print'); setPrintStatus('idle'); }}
-            className={`px-8 py-2.5 text-sm font-bold rounded-full transition-all flex items-center space-x-2 ${
+            className={`px-6 py-2 text-sm font-bold rounded-full transition-all flex items-center space-x-2 ${
               activeTab === 'print' ? 'bg-indigo-50 text-indigo-700' : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50'
             }`}
           >
@@ -319,22 +314,22 @@ export default function PhysicsLabPrintApp() {
         </div>
 
         {/* Central Interaction Area */}
-        <div className="relative w-full max-w-2xl mx-auto mb-16">
+        <div className="relative w-full max-w-2xl mx-auto mb-8 mt-1">
           
-          {/* Main Card Container with glowing shadow */}
-          <div className="relative bg-white rounded-[2rem] p-8 sm:p-12 shadow-[0_10px_50px_-15px_rgba(99,102,241,0.25)] border border-white">
+          {/* Main Card Container */}
+          <div className="relative bg-white rounded-[2rem] p-5 sm:p-8 shadow-[0_10px_50px_-15px_rgba(99,102,241,0.25)] border border-white">
             
             {/* ================= TAB 1: UPLOAD ================= */}
             {activeTab === 'upload' && (
               <div>
                 {!generatedCode ? (
                   <>
-                    {/* Floating Document Icon overlaying the top border */}
-                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-16 h-20 bg-white border border-slate-100 shadow-lg rounded-xl flex flex-col items-center justify-start pt-3.5 z-20">
-                      <div className="w-8 h-1.5 bg-indigo-500 rounded-full mb-2"></div>
-                      <div className="w-10 h-1.5 bg-slate-200 rounded-full mb-2"></div>
-                      <div className="w-6 h-1.5 bg-slate-200 rounded-full mb-2"></div>
-                      <div className="text-[9px] font-black text-indigo-600 mt-auto mb-2">FILE</div>
+                    {/* Floating Document Icon - Scaled Down */}
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-14 bg-white border border-slate-100 shadow-lg rounded-xl flex flex-col items-center justify-start pt-2.5 z-20">
+                      <div className="w-6 h-1 bg-indigo-500 rounded-full mb-1"></div>
+                      <div className="w-8 h-1 bg-slate-200 rounded-full mb-1"></div>
+                      <div className="w-5 h-1 bg-slate-200 rounded-full mb-1"></div>
+                      <div className="text-[7px] font-black text-indigo-600 mt-auto mb-1.5">FILE</div>
                     </div>
 
                     {/* The Flashing Dashed Box */}
@@ -342,7 +337,7 @@ export default function PhysicsLabPrintApp() {
                       onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                       onDragLeave={() => setIsDragging(false)}
                       onDrop={(e) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files?.[0]) handleAutoUpload(e.dataTransfer.files[0]); }}
-                      className={`relative w-full border-[3px] border-dashed rounded-2xl transition-all flex flex-col items-center justify-center pt-14 pb-10 px-6 text-center cursor-pointer group ${
+                      className={`relative w-full border-[3px] border-dashed rounded-2xl transition-all flex flex-col items-center justify-center pt-8 pb-6 px-6 text-center cursor-pointer group ${
                         isUploading ? 'border-indigo-200 bg-indigo-50/30' :
                         isDragging ? 'drag-active-border bg-indigo-50/50 scale-[0.99]' :
                         'flashing-dashed-border bg-white'
@@ -352,15 +347,15 @@ export default function PhysicsLabPrintApp() {
                       
                       {isUploading ? (
                         <div className="flex flex-col items-center py-2 animate-in fade-in">
-                          <Loader2 className="w-10 h-10 text-indigo-600 animate-spin mb-4" />
+                          <Loader2 className="w-10 h-10 text-indigo-600 animate-spin mb-3" />
                           <p className="text-lg font-bold text-slate-800">Uploading {file?.name}...</p>
                           <p className="text-sm text-indigo-600 mt-1">Generating private code...</p>
                         </div>
                       ) : (
                         <div className="flex flex-col items-center pointer-events-none">
-                          <h3 className="text-2xl font-bold text-slate-900 mb-6">Select or drop graph here</h3>
+                          <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3">Select or drop graph here</h3>
                           
-                          <div className="bg-indigo-600 text-white font-bold px-8 py-3.5 rounded-full flex items-center space-x-2 group-hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-600/20 mb-6">
+                          <div className="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-full flex items-center space-x-2 group-hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-600/20 mb-3">
                             <Upload className="w-4 h-4" />
                             <span>Browse Files</span>
                           </div>
@@ -373,43 +368,39 @@ export default function PhysicsLabPrintApp() {
                     </div>
 
                     {uploadError && (
-                      <div className="mt-6 p-4 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm font-semibold flex items-center justify-center space-x-2 animate-in fade-in slide-in-from-top-2">
+                      <div className="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm font-semibold flex items-center justify-center space-x-2 animate-in fade-in slide-in-from-top-2">
                         <AlertCircle className="w-5 h-5 flex-shrink-0" />
                         <span>{uploadError}</span>
                       </div>
                     )}
                   </>
                 ) : (
-                  /* Success Ticket Screen */
-                  <div className="pt-4 pb-2 text-center space-y-6 animate-in fade-in zoom-in-95">
-                    <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner mb-2">
-                      <Check className="w-8 h-8 stroke-[3]" />
+                  /* Success Ticket Screen - Redesigned to fit tightly! */
+                  <div className="text-center animate-in fade-in zoom-in-95 flex flex-col items-center">
+                    <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner mb-3">
+                      <Check className="w-6 h-6 stroke-[3]" />
                     </div>
                     
-                    <div>
-                      <h3 className="font-bold text-slate-900 text-xl mb-1">Upload Complete</h3>
-                      <p className="text-sm text-slate-500 max-w-[280px] mx-auto leading-relaxed">
-                        Walk to a lab printer and enter your code to print.
-                      </p>
-                    </div>
+                    <h3 className="font-bold text-slate-900 text-lg mb-1">Upload Complete</h3>
+                    <p className="text-sm text-slate-500 max-w-[280px] mx-auto leading-relaxed mb-4">
+                      Walk to a lab printer and enter your code to print.
+                    </p>
 
-                    <div className="py-6 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div className="w-full py-4 bg-slate-50 rounded-2xl border border-slate-100 mb-5">
                       <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Print Code</span>
-                      <div className="text-[5rem] sm:text-[6rem] leading-none font-black font-mono text-slate-900 tracking-tight my-2">
+                      <div className="text-[4.5rem] leading-none font-black font-mono text-slate-900 tracking-tight mt-1 mb-2">
                         {generatedCode}
                       </div>
-                      <div className="inline-flex items-center space-x-1.5 text-slate-500 text-xs font-bold mt-2">
+                      <div className="inline-flex items-center space-x-1.5 text-slate-500 text-xs font-bold">
                         <Clock className="w-3.5 h-3.5 text-slate-400" />
                         <span>Expires in 15 minutes</span>
                       </div>
                     </div>
                     
-                    <div className="pt-2">
-                      <button onClick={resetUpload} className="mx-auto text-indigo-600 font-bold text-sm transition-all flex items-center justify-center space-x-2 hover:text-indigo-800 bg-indigo-50 px-6 py-3 rounded-full hover:bg-indigo-100">
-                        <RotateCcw className="w-4 h-4" />
-                        <span>Upload another</span>
-                      </button>
-                    </div>
+                    <button onClick={resetUpload} className="mx-auto text-indigo-600 font-bold text-sm transition-all flex items-center justify-center space-x-2 hover:text-indigo-800 bg-indigo-50 px-6 py-2.5 rounded-full hover:bg-indigo-100">
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Upload another</span>
+                    </button>
                   </div>
                 )}
               </div>
@@ -419,19 +410,19 @@ export default function PhysicsLabPrintApp() {
             {activeTab === 'print' && (
               <div className="pt-2">
                 {printStatus === 'idle' || printStatus === 'error' ? (
-                  <div className="space-y-8 animate-in fade-in">
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold text-slate-900 mb-2">Enter 3-Digit Code</h3>
+                  <div className="animate-in fade-in">
+                    <div className="text-center mb-4">
+                      <h3 className="text-xl font-bold text-slate-900 mb-1">Enter 3-Digit Code</h3>
                     </div>
 
                     <input
                       type="text" maxLength={3} inputMode="numeric" value={inputCode} onChange={(e) => setInputCode(e.target.value.replace(/\D/g, ''))}
                       placeholder="0 0 0" autoFocus
-                      className="w-full text-center text-6xl tracking-[0.25em] font-mono font-black py-8 bg-slate-50 border-2 border-slate-200 rounded-2xl focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all placeholder:text-slate-300 placeholder:tracking-normal text-slate-900"
+                      className="w-full text-center text-5xl tracking-[0.25em] font-mono font-black py-5 bg-slate-50 border-2 border-slate-200 rounded-2xl focus:border-indigo-500 focus:bg-white focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all placeholder:text-slate-300 placeholder:tracking-normal text-slate-900 mb-4"
                     />
 
                     {printStatus === 'error' && (
-                      <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm font-bold flex items-center justify-center space-x-2 animate-in fade-in">
+                      <div className="p-3 mb-4 bg-rose-50 border border-rose-200 rounded-xl text-rose-700 text-sm font-bold flex items-center justify-center space-x-2 animate-in fade-in">
                         <AlertCircle className="w-5 h-5 flex-shrink-0" />
                         <span>{printMessage}</span>
                       </div>
@@ -440,22 +431,22 @@ export default function PhysicsLabPrintApp() {
                     <button 
                       onClick={handlePrint} 
                       disabled={inputCode.length !== 3} 
-                      className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold py-5 rounded-2xl text-lg transition-all flex items-center justify-center space-x-2 shadow-lg shadow-slate-900/20 disabled:shadow-none"
+                      className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-200 disabled:text-slate-400 text-white font-bold py-4 rounded-2xl text-lg transition-all flex items-center justify-center space-x-2 shadow-lg shadow-slate-900/20 disabled:shadow-none"
                     >
                       <span>Release Print</span>
                       {inputCode.length === 3 && <ArrowRight className="w-5 h-5" />}
                     </button>
                   </div>
                 ) : (
-                  <div className="py-16 flex flex-col items-center justify-center text-center space-y-6 animate-in fade-in zoom-in-95">
+                  <div className="py-8 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95">
                     {printStatus === 'success' ? (
-                      <CheckCircle2 className="w-20 h-20 text-emerald-500" />
+                      <CheckCircle2 className="w-16 h-16 text-emerald-500 mb-4" />
                     ) : (
-                      <Loader2 className="w-20 h-20 text-indigo-600 animate-spin" />
+                      <Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-4" />
                     )}
                     <div>
-                      <h3 className="text-3xl font-extrabold text-slate-900 mb-2">{printMessage}</h3>
-                      {printStatus === 'printing' && <p className="text-slate-500 font-medium">Sending to the connected USB printer...</p>}
+                      <h3 className="text-2xl font-extrabold text-slate-900 mb-2">{printMessage}</h3>
+                      {printStatus === 'printing' && <p className="text-slate-500 text-sm font-medium">Sending to the connected USB printer...</p>}
                     </div>
                   </div>
                 )}
@@ -464,46 +455,46 @@ export default function PhysicsLabPrintApp() {
           </div>
         </div>
 
-        {/* Workflow / How it works - Increased Size and 2-Lines */}
-        <section className="mt-8 pt-16 border-t border-slate-200/60 w-full max-w-6xl mx-auto mb-20">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-extrabold text-slate-900">How it works</h2>
-            <p className="text-base text-slate-500 mt-3 font-medium">A frictionless workflow for the physics laboratory.</p>
+        {/* Workflow / How it works */}
+        <section className="mt-4 pt-10 border-t border-slate-200/60 w-full max-w-6xl mx-auto mb-12">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-extrabold text-slate-900">How it works</h2>
+            <p className="text-sm text-slate-500 mt-2 font-medium">A frictionless workflow for the physics laboratory.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
             {/* Desktop connecting line */}
-            <div className="hidden md:block absolute top-[32px] left-[15%] right-[15%] h-[2px] bg-slate-100 z-0" />
+            <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-[2px] bg-slate-100 z-0" />
 
             {/* Step 1 */}
             <div className="relative z-10 flex flex-col items-center text-center px-2">
-              <div className="w-16 h-16 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-xl mb-6 shadow-sm">
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-lg mb-5 shadow-sm">
                 01
               </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">Upload Graph</h3>
-              <p className="text-base text-slate-500 leading-relaxed max-w-[320px]">
+              <h3 className="font-bold text-slate-900 text-lg mb-2">Upload Graph</h3>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-[320px]">
                 Drop your document or image. The system instantly generates a private 3-digit code.
               </p>
             </div>
 
             {/* Step 2 */}
             <div className="relative z-10 flex flex-col items-center text-center px-2">
-              <div className="w-16 h-16 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-xl mb-6 shadow-sm">
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-lg mb-5 shadow-sm">
                 02
               </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">Walk to Station</h3>
-              <p className="text-base text-slate-500 leading-relaxed max-w-[320px]">
+              <h3 className="font-bold text-slate-900 text-lg mb-2">Walk to Station</h3>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-[320px]">
                 Your document is held securely in the cloud. Walk over to Printer 1 or Printer 2.
               </p>
             </div>
 
             {/* Step 3 */}
             <div className="relative z-10 flex flex-col items-center text-center px-2">
-              <div className="w-16 h-16 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-xl mb-6 shadow-sm">
+              <div className="w-14 h-14 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center text-indigo-600 font-black text-lg mb-5 shadow-sm">
                 03
               </div>
-              <h3 className="font-bold text-slate-900 text-xl mb-3">Release Print</h3>
-              <p className="text-base text-slate-500 leading-relaxed max-w-[320px]">
+              <h3 className="font-bold text-slate-900 text-lg mb-2">Release Print</h3>
+              <p className="text-sm text-slate-500 leading-relaxed max-w-[320px]">
                 Enter your code on the printer's screen. The document prints immediately into your hands.
               </p>
             </div>
@@ -512,8 +503,8 @@ export default function PhysicsLabPrintApp() {
 
       </main>
 
-      <footer className="w-full bg-white border-t border-slate-100 py-8 px-6 text-center">
-        <p className="font-bold text-slate-400 text-sm">Natuurkunde Practicum • Printing System</p>
+      <footer className="w-full bg-white border-t border-slate-100 py-6 px-6 text-center mt-auto">
+        <p className="font-bold text-slate-400 text-xs">Natuurkunde Practicum • Printing System</p>
       </footer>
     </div>
   )
@@ -842,8 +833,8 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 ```ts
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
-import "./.next/dev/types/routes.d.ts";
-import "./.next/dev/types/root-params.d.ts";
+import "./.next/types/routes.d.ts";
+import "./.next/types/root-params.d.ts";
 
 // NOTE: This file should not be edited
 // see https://nextjs.org/docs/app/api-reference/config/typescript for more information.

@@ -145,7 +145,7 @@ export default function PhysicsLabPrintApp() {
 
       <main className="relative z-10 max-w-6xl mx-auto w-full px-6 flex-grow flex flex-col items-center">
         
-        {/* Hero Section - Moved up by removing the badge and reducing top padding */}
+        {/* Hero Section */}
         <div className="max-w-2xl mx-auto pt-4 md:pt-6 pb-2 md:pb-4 text-center flex flex-col items-center">
 
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
@@ -154,11 +154,11 @@ export default function PhysicsLabPrintApp() {
           </h1>
           
           <p className="mt-3 text-sm md:text-base text-slate-600 leading-relaxed max-w-lg mx-auto">
-            No login required. Drop your file, grab your 3-digit code, and release it at Printer 1 or Printer 2.
+            No login required. Drop your file, grab your 3-digit code, and release it at Printer Station 1 or 2.
           </p>
         </div>
 
-        {/* Floating Toggle Switch - Tighter Margins */}
+        {/* Floating Toggle Switch */}
         <div className="relative z-30 flex bg-white border border-slate-200 shadow-sm p-1 rounded-full mb-4">
           <button
             onClick={() => { setActiveTab('upload'); setUploadError(null); }}
@@ -189,7 +189,7 @@ export default function PhysicsLabPrintApp() {
               <div>
                 {!generatedCode ? (
                   <>
-                    {/* Floating Document Icon - Scaled Down */}
+                    {/* Floating Document Icon */}
                     <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-14 bg-white border border-slate-100 shadow-lg rounded-xl flex flex-col items-center justify-start pt-2.5 z-20">
                       <div className="w-6 h-1 bg-indigo-500 rounded-full mb-1"></div>
                       <div className="w-8 h-1 bg-slate-200 rounded-full mb-1"></div>
@@ -240,7 +240,7 @@ export default function PhysicsLabPrintApp() {
                     )}
                   </>
                 ) : (
-                  /* Success Ticket Screen - Redesigned to fit tightly! */
+                  /* Success Ticket Screen */
                   <div className="text-center animate-in fade-in zoom-in-95 flex flex-col items-center">
                     <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto shadow-inner mb-3">
                       <Check className="w-6 h-6 stroke-[3]" />
@@ -248,7 +248,7 @@ export default function PhysicsLabPrintApp() {
                     
                     <h3 className="font-bold text-slate-900 text-lg mb-1">Upload Complete</h3>
                     <p className="text-sm text-slate-500 max-w-[280px] mx-auto leading-relaxed mb-4">
-                      Walk to a lab printer and enter your code to print.
+                      Walk to a printer PC and enter your code to print.
                     </p>
 
                     <div className="w-full py-4 bg-slate-50 rounded-2xl border border-slate-100 mb-5">
@@ -349,7 +349,7 @@ export default function PhysicsLabPrintApp() {
               </div>
               <h3 className="font-bold text-slate-900 text-lg mb-2">Walk to Station</h3>
               <p className="text-sm text-slate-500 leading-relaxed max-w-[320px]">
-                Your document is held securely in the cloud. Walk over to Printer 1 or Printer 2.
+                Your document is held securely in the cloud. Walk over to Printer Station 1 or 2.
               </p>
             </div>
 
@@ -360,7 +360,7 @@ export default function PhysicsLabPrintApp() {
               </div>
               <h3 className="font-bold text-slate-900 text-lg mb-2">Release Print</h3>
               <p className="text-sm text-slate-500 leading-relaxed max-w-[320px]">
-                Enter your code on the printer's screen. The document prints immediately into your hands.
+                Enter your code on the PC connected to the printer, and your graph will print instantly.
               </p>
             </div>
           </div>
